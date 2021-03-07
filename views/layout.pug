@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='/style.css')
+
+    body
+         .content
+            h1 Welcome to SpaceX
+            form(action="https://api.spacexdata.com/v4/launches/upcoming", method="get") 
+                button(type="submit") Upcoming Launches

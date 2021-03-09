@@ -1,4 +1,5 @@
 const axios = require('axios');
+const launchesapi = require('../launches.api');
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 
@@ -7,9 +8,10 @@ exports.homePage = (req, res) => {
 };
 
 exports.getLaunches = async (req, res) => {
-    let launches = await axios.get('https://api.spacexdata.com/v4/launches/upcoming', { headers: { 'Accept': 'application/json'} })
-    let launchDetails = launches.data
+    const launchData = await launchesapi.getLaunches();
 
-    res.render('launches', {launchDetails});
+    const data = { launches: launchData }
+
+    res.render('launches', { data });
     
 };

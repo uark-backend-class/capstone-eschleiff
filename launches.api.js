@@ -4,11 +4,13 @@ const baseUrl = 'https://api.spacexdata.com/v4/'
 let launchData;
 
 async function getAllLaunches() {
-    const response = await axios.get(url + 'launces', { headers: { 'Accept': 'application/json' } });
+    const response = await axios.get(baseUrl + 'launches', { headers: { 'Accept': 'application/json' } });
     launchData = response.data;
 
     return launchData;
 
 }
 
-module.exports = getAllLaunches();
+module.exports = {
+    getAllLaunches
+};

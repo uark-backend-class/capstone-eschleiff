@@ -2,5 +2,5 @@ extends layout
 
 block content 
     h1 Welcome to SpaceX
-            form(action="https://api.spacexdata.com/v4/launches/upcoming", method="get") 
+            form(action='/launches', method="get") 
                 button(type="submit") Upcoming Launches

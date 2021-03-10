@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
+const pug = require('pug');
+const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const passport = require('passport');
 const { initialize } = require('passport');
@@ -13,7 +14,8 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 //Sets pug as my viewing engine
-app.set('view engine', 'pug');
+//app.set('view engine', 'pug');
+app.set('view engine', 'hbs');
 
 //
 app.use(express.static(path.join(__dirname, 'public')));

@@ -2,15 +2,21 @@ const axios = require('axios');
 const baseUrl = 'https://api.spacexdata.com/v4/'
 
 let launchData;
-let launchNameData = [];
+let launchNameData = {};
 
 async function getAllLaunches() {
     const response = await axios.get(baseUrl + 'launches');
-    launchData = JSON.stringify(response.data);
+    launchData = (response.data);
 
-   for (names in response) {
-       console.log(names);
-   }
+    // let names = response.data[0].name;
+    // console.log(names);
+
+    // let nameData = response.data.map(element => {
+    //    if (element.name) {
+    //        return (element.name);
+    //    } 
+    // });
+    // console.log(nameData);
 
     return launchData;
 
@@ -20,4 +26,4 @@ module.exports = {
     getAllLaunches
 };
 
-getAllLaunches();
+// getAllLaunches();

@@ -1,9 +1,11 @@
 extends layout 
 
 block content 
-    h2 LAUNCHES!!
-        each elem,i in launchData
-            p !{elem.name}
+    .box
+        .shipNames
+            each elem,i in launchData
+                p !{elem.flight_number} - !{elem.date_local} - !{elem.name}: !{elem.details}
+
 
             
     

@@ -1,10 +1,24 @@
 extends layout 
 
 block content 
+
+    h1 All Launches
+    
     .box
-        .shipNames
-            each elem,i in launchData
-                p !{elem.flight_number} - !{elem.date_local} - !{elem.name}: !{elem.details}
+        .allLaunches
+            table.table
+                 tr 
+                    th Flight Number
+                    th Date
+                    th Flight Name
+                    th Flight Details
+                 each elem,i in launchData
+                    tr 
+                        td !{elem.flight_number}
+                        td !{elem.date_local}
+                        td !{elem.name}
+                        td !{elem.details}
+               
 
 
             

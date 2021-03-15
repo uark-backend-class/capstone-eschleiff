@@ -10,7 +10,7 @@ function countdownTimer() {
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
         let timer = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+        return (timer);
     });
-    return (timer);
-    
+    return x;
 }

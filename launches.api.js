@@ -17,10 +17,9 @@ async function getLaunchDates() {
     const response = await axios.get(baseUrl + 'launches/latest');
     launchData = response.data;
 
-    for (property in launchData) {
-        launchDates.push(property.date_utc);
+    for (let property of launchData) {
+        launchDates.push(property.date_utc)
     }
-
     console.log(launchDates);
 }
 

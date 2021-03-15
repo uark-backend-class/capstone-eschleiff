@@ -1,3 +1,3 @@
 exports.homePage = (req, res) => {
-    res.render('home');
+    res.redirect('/launches');
 };

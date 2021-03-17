@@ -2,7 +2,10 @@ extends layout
 
 block content 
 
-    h1 All Launches
+    h1.title All Launches
+
+    form(action='/', method="get") 
+        button(type="submit") Back to Homepage
     
     .box
         .allLaunches
@@ -18,7 +21,7 @@ block content
                         td !{elem.date_local}
                         td !{elem.name}
                         td !{elem.details}
-               
+          
 
 
             

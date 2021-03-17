@@ -14,8 +14,8 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 //Sets pug as my viewing engine
-//app.set('view engine', 'pug');
-app.set('view engine', 'hbs');
+app.set('view engine', 'pug');
+//app.set('view engine', 'hbs');
 
 //
 app.use(express.static(path.join(__dirname, 'public')));

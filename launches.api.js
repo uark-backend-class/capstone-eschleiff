@@ -12,7 +12,7 @@ async function getAllLaunches() {
 
 }
 
-async function getUpcomingLaunch() {
+async function getUpcomingDates() {
     const response = await axios.get(baseUrl + 'launches/upcoming');
     upcomingLaunchData = (response.data);
 
@@ -23,5 +23,5 @@ async function getUpcomingLaunch() {
 
 module.exports = {
     getAllLaunches,
-    getUpcomingLaunch,
+    getUpcomingDates,
 };

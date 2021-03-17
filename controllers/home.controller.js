@@ -1,7 +1,7 @@
 const timer = require('../countdowntimer');
 
 exports.homePage = async (req, res) => {
-    const countdownTimer = await timer.countdownTimer();
+    //const countdownTimer = await timer.countdownTimer();
 
-    res.render('home', { countdownTimer });
+    res.render('home');
 };

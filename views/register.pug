@@ -1,25 +1,26 @@
 extends layout
 
 block content
-    form(action='/register/saved' method='POST')
-        .container 
-            h1.register Register 
-            p Please fill in this form to create an account.
-            hr
+    .card
+        form(action='/register/saved' method='POST')
+            .container 
+                h1.register Register 
+                p Please fill in this form to create an account.
+                hr
 
-            label(for='email') #[strong Email]
-            input#email(type='text' placeholder='Enter Email' name='email' required)
+                label(for='email') #[strong Email]
+                input#email(type='text' placeholder='Enter Email' name='email' required)
 
-            label(for='psw') #[strong Password]
-            input#psw(type='password' placeholder='Enter Password' name='psw' required)
+                label(for='psw') #[strong Password]
+                input#psw(type='password' placeholder='Enter Password' name='psw' required)
 
-            label(for='psw-repeat') #[strong Repeat Password]
-            input#psw-repeat(type='password' placeholder='Repeat Password' name='psw-repeat' required)
+                label(for='psw-repeat') #[strong Repeat Password]
+                input#psw-repeat(type='password' placeholder='Repeat Password' name='psw-repeat' required)
 
-            hr
+                hr
 
-            p By creating an account you agree to signup for reminders about upcoming launches.
-            button.registerbtn(type='submit') Register
+                p By creating an account you agree to signup for reminders about upcoming launches.
+                button.registerbtn(type='submit') Register
 
-        .container-signin  
-            p Already have an account? <a href="#">Sign in</a>
+            .container-signin  
+                p Already have an account? <a href="#">Sign in</a>

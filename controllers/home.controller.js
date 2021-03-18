@@ -1,4 +1,3 @@
-const timer = require('../countdowntimer');
 const upcomingLaunchDates = require('../launches.api');
 
 exports.homePage = async (req, res) => {

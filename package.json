@@ -17,11 +17,9 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "hbs": "^4.1.1",
-    "jsdom": "^16.5.1",
     "mongodb": "^3.6.4",
     "mongoose": "^5.11.18",
-    "mysql2": "^2.2.5",
-    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2",
     "sequelizer": "^1.1.4",
     "spacex-api.js": "^2.0.0"

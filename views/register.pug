@@ -3,7 +3,7 @@ extends layout
 block content
     .card
         form(action='/register' method='POST')
-            .container 
+            .container
                 h1.register Register 
                 p Please fill in this form to create an account.
                 
@@ -33,4 +33,5 @@ block content
                 button.registerbtn(type='submit') Register
 
             .container-signin  
-                p Already have an account? <a href="#">Sign in</a>
+                p Already have an account?
+                    a(href='/login')  Sign in 

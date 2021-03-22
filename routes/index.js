@@ -7,6 +7,6 @@ const { route } = require('../app');
 router.get('/', homeController.homePage);
 router.get('/launches', launchController.getLaunches);
 router.get('/register', registerController.register);
-router.post('/register/saved', registerController.registerSaved)
+router.post('/register', registerController.addUser)
 
 module.exports = router;

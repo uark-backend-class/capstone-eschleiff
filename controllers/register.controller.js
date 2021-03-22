@@ -1,14 +1,27 @@
+const User = require('../models/users.model');
+
 exports.register = (req, res) => {
+    
+   
 
     res.render('register')
 
 };
 
-exports.registerSaved = async (req, res) => {
+exports.addUser = async (req, res) => {
 
-    console.log(req.body.email);
-    console.log(req.body.psw);
+    if (req.body.firstName && req.body.lastName) {
+        let user = await User.findOne({ firstName: req.body.firstName, lastName: req.body.lastName });
+        if (user) {
+            console.log('This user already exists');
+            res.render('register', { user });
+        }
+    }
+    else {
+        const user = new User(req.body);
+        await user.save(); 
+        res.redirect('/');
+    }
 
-    res.send('This is placeholder text');
 
 }

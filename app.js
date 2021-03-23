@@ -4,9 +4,11 @@ const pug = require('pug');
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const routes = require('./routes/index');
-const passport = require('passport-local');
-const { initialize } = require('passport');
 const User = require('./models/users.model');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express.sesison');
+const { session } = require('passport');
 
 //Create express app
 const app = express(); 
@@ -26,21 +28,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Parse JSON data and put it into req.body
 app.use(express.json());
 
+// keeps users logged into the session
+app.use(session({ secret: 'doge' }));
+
+// Tell app to use passport middleware
 app.use(passport.initialize());
+app.use(passport.session());
 
-passport.use(new localStrategy(
-    function(email, psw, done) {
-        User.findOne({ email: email }, (err, user) => {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            if (!user.verify.Password(psw)) { return done(null, false); }
-            return done(null, user);
-        });
-    }
-));
+// Static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(User.authenticate()));
 
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-//app.use(passport.session());
 
 app.use(routes);
 

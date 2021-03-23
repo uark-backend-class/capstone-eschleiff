@@ -2,7 +2,7 @@ extends layout
 
 block content 
     .card
-        form(action='/login' method='GET')
+        form(action='/login' method='POST')
             .container
                 h1.login Login 
                 p Please enter your email and password to login.
@@ -10,13 +10,10 @@ block content
                 hr
 
                 label(for='email') #[strong Email]
-                input#email(type='text' placeholder='Enter Email' name='email' required)
+                input#email(type='text' placeholder='Enter Email' name='username' required)
 
                 label(for='psw') #[strong Password]
-                input#psw(type='password' placeholder='Enter Password' name='psw' required)
-
-                label(for='psw-repeat') #[strong Repeat Password]
-                input#psw-repeat(type='password' placeholder='Repeat Password' name='psw-repeat' required)
+                input#psw(type='password' placeholder='Enter Password' name='password' required)
 
                 hr
 

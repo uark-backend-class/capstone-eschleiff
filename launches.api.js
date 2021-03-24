@@ -16,7 +16,7 @@ async function getUpcomingDates() {
     const response = await axios.get(baseUrl + 'launches/upcoming');
     upcomingLaunchData = (response.data);
 
-    let upcomingDates = upcomingLaunchData.map(elem => elem.date_local);
+    let upcomingDates = upcomingLaunchData.map(elem => elem.date_utc);
     
     return (upcomingDates);
 }

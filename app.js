@@ -7,8 +7,7 @@ const routes = require('./routes/index');
 const User = require('./models/users.model');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const session = require('express.sesison');
-const { session } = require('passport');
+const session = require('express-session');
 
 //Create express app
 const app = express(); 
@@ -29,7 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // keeps users logged into the session
-app.use(session({ secret: 'doge' }));
+app.use(session({ 
+    secret: 'doge',
+    resave: true,
+    saveUninitialized: true
+}));
 
 // Tell app to use passport middleware
 app.use(passport.initialize());

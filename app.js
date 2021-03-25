@@ -3,9 +3,8 @@ const session = require('express-session');
 const path = require('path');
 const pug = require('pug');
 const hbs = require('express-handlebars');
-const mongoose = require('mongoose');
 const routes = require('./routes/index');
-const User = mongoose.model('User');
+const User = require('./models/users.model');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 
@@ -48,7 +47,10 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// tells app to use our flash messages
+app.use(flash());
 
+// tells our app what routes to use
 app.use(routes);
 
 module.exports = app;

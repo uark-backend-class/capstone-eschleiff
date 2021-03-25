@@ -6,10 +6,12 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     email: String,
-});
+    },
+    { timestamps: true }
+);
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 
-var User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;

@@ -1,26 +1,17 @@
-const passport = require('passport');
-const User = require('../models/users.model');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 
 exports.register = (req, res) => {
     
-   
-
     res.render('register')
 
 };
 
-exports.addUser = async (req, res) => {
+exports.addUser = async (req, res, next) => {
 
-    User.register(new User({ username: req.body.username }), req.body.password, req.body.firstName, req.body.lastName, (err, user) => {
-        if (err) {
-            return res.render('register', { info: 'Sorry. That username already exists. Try again.', user: user });
-        }
-
-        passport.authenticate('local')(req, res, () => {
-            res.redirect('/');
-        });
-    });
-
+    const user = new User({ email: req.body.email, firstName: req.body.firstName, lastName: req.body.lastName });
+    await User.register(user, req.body.password);
+    next();
     // if (req.body.firstName && req.body.lastName) {
     //     let user = await User.findOne({ firstName: req.body.firstName, lastName: req.body.lastName });
     //     if (user) {

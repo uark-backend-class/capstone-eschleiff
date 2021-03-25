@@ -9,7 +9,7 @@ const { route } = require('../app');
 
 
 router.get('/login', loginController.loginPage);
-router.post('/login', passport.authenticate('local'), loginController.login)
+router.post('/login', loginController.login)
 router.get('/', homeController.homePage);
 router.get('/launches', launchController.getLaunches);
 router.get('/register', registerController.register);

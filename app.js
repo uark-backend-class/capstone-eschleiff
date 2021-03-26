@@ -7,6 +7,7 @@ const routes = require('./routes/index');
 const User = require('./models/users.model');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
 
 //Create express app
 const app = express(); 

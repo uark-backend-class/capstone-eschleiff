@@ -9,12 +9,13 @@ const { route } = require('../app');
 
 router.get('/login', auth.loginPage);
 router.post('/login', auth.login);
-router.get('/register', registerController.register);
+router.get('/register', registerController.registerPage);
 router.post('/register', registerController.addUser, auth.login);
 
-// Must be an authorized User to use these routes
+// Must be an User to use these routes
 router.use(auth.isAuthenticated);
 router.get('/', homeController.homePage);
 router.get('/launches', launchController.getLaunches);
+router.get('/logout', auth.logout);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const pug = require('pug');
-const hbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const routes = require('./routes/index');
 const User = require('./models/users.model');
 const passport = require('passport');
@@ -16,8 +16,11 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 //Sets pug as my viewing engine
-app.set('view engine', 'pug');
-//app.set('view engine', 'hbs');
+//app.set('view engine', 'pug');
+app.engine('hbs', exphbs({
+    extname: 'hbs'
+}));
+app.set('view engine', 'hbs');
 
 // populate req.cookies
 app.use(cookieParser());
@@ -34,7 +37,7 @@ app.use(express.json());
 app.use(session({ 
     secret: 'doge',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 
 // Tell app to use passport middleware

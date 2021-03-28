@@ -1,0 +1,24 @@
+<p id='launchDate' hidden>{{date}}</p>
+<span id="countdown" class="timer"></span>
+<script>
+    let time = (document.getElementById('launchDate').innerHTML);
+    let countDownDate = new Date(time).getTime();
+    let x = setInterval( () => {
+        let now = new Date().getTime();
+        let timeLeft = countDownDate - now;
+        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+        if (timeLeft < 0) {
+            clearInterval(x);
+            document.querySelector(".timer").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>
+<h1> Welcome to SpaceX </h1>
+<a href="/launches">Upcoming Launches</a>
+<a href="/register">Register</a>
+<a href="/logout">Logout</a>

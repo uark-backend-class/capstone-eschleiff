@@ -1,3 +1,9 @@
+{{#if flashes}}
+    {{#each flashes}}
+        <div class='alert alert-success'>{{ this }}</div>
+    {{/each}}
+{{/if}}
+
 <p id='launchDate' hidden>{{date}}</p>
 <span id="countdown" class="timer"></span>
 <script>

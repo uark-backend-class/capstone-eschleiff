@@ -1,26 +1,25 @@
-<h1 class='title'> All Launches </h1>
+<div class="container-fluid">
+    <h1 style="color: ghostwhite;"> All Launches </h1>
+    <a href="/" class="btn btn-secondary">Return Home</a>
 
-    <form action='/', method="get">
-        <button type="submit"> Back to Homepage</button>
-    </form>
-    
-    <div class="box">
-        <div class='allLaunches'>
-            <table class='table'>
-                 <tr> 
+    <table class='table table-hover'>
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                <tr> 
                     <th>Flight Number</th>
                     <th>Date</th>
                     <th>Flight Name</th>
                     <th>Flight Details</th>
-                 </tr>
-                 {{#each launchData}}
-                    <tr> 
-                        <td>{{this.flight_number}}</td>
-                        <td>{{this.date_local}}</td>
-                        <td>{{this.name}}</td>
-                        <td>{{this.details}}</td>
-                    </tr>
-                 {{/each}}
+                </tr>
+                {{#each launchData}}
+                <tr> 
+                    <td>{{this.flight_number}}</td>
+                    <td>{{this.date_local}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.details}}</td>
+                </tr>
+                {{/each}}
             </table>
         </div>
-    </div>
+    </table>
+</div>

@@ -1,21 +1,27 @@
-<div class='card'>
-        <form action='/login' method='POST'>
-            <div class='container'>
-                <h1 class='login'>Login</h1> 
-                <p>Please enter your email and password to login.</p>
-            
-                <hr>
+<div class='position-absolute top-50 start-50 translate-middle'>
+    <div class="card text-center rounded-3 shadow-lg" style="width: 18rem;">
+            <form class="form-floating" action='/login' method='POST'>
+                <div class="card-body">
+                    <h1 class="card-title">Login</h1> 
+                    <p class="card-subtitle">Please enter your email and password to login.</p>
+                
+                    <hr>
+                    <div class="col-md-12">
+                        <label for='email' class="form-label"><strong>Email</strong></label>
+                        <input class="form-control" id='email' type='email' placeholder='Enter Email' name='email' required>
 
-                <label for='email'><strong>Email</strong></label>
-                <input id='email' type='text' placeholder='Enter Email' name='email' required>
+                        <label for='psw' class="form-label"><strong>Password</strong></label>
+                        <input class="form-control" id='psw' type='password' placeholder='Enter Password' name='password' required>
+                    </div>
+                    <hr>
 
-                <label for='psw'><strong>Password</strong></label>
-                <input id='psw' type='password' placeholder='Enter Password' name='password' required>
+                    <button type='submit' class="btn btn-primary btn-lg col-6">Login</button>
+                </div>
 
-                <hr>
-
-                <button type='submit'>Login</button>
-            </div>
-        </form>
-        <a href="/register">Register</a> 
+                <div>
+                    <p><strong>Don't have an account?</strong></p>  
+                    <a href="/register" class="btn btn-secondary btn-sm">Register</a> 
+                </div>
+            </form>
+    </div>
 </div>

@@ -1,36 +1,39 @@
-<div class='card'>
-        <form action='/register' method='POST'>
-            <div class='container'>
-                <h1 class='register'> Register </h1> 
-                <p> Please fill in this form to create an account. </p>
+<div class='position-absolute top-50 start-50 translate-middle'>
+    <div class='card text-center rounded-3 shadow-lg'>
+        <form class="form-floating" action='/register' method='POST'>
+            <div class='card-body'>
+                <h1 class='card-title'> Register </h1> 
+                <p class="card-subtitle"> Please fill in this form to create an account. </p>
             
                 <hr>
 
-                <label for='firstName'><strong>First Name</strong></label>
-                <input id='firstName' type='text' placeholder='Enter First Name' name='firstName' required>
+                <div class="col-12">
+                    <label for='firstName' class="form-label"><strong>First Name</strong></label>
+                    <input class="form-control" id='firstName' type='text' placeholder='Enter First Name' name='firstName' required>
 
-                <label for='lastName'><strong>Last Name</strong></label>
-                <input id='lastName' type='text' placeholder='Enter Last Name' name='lastName' required>
+                    <label for='lastName' class="form-label"><strong>Last Name</strong></label>
+                    <input class="form-control" id='lastName' type='text' placeholder='Enter Last Name' name='lastName' required>
 
-                <label for='email'><strong>Email</strong></label>
-                <input id='email' type='text' placeholder='Enter Email' name='email' required>
+                    <label for='email' class="form-label"><strong>Email</strong></label>
+                    <input class="form-control" id='email' type='email' placeholder='Enter Email' name='email' required>
 
-                <label for='psw'><strong>Password</strong></label>
-                <input id='psw' type='password' placeholder='Enter Password' name='password' required>
+                    <label for='psw' class="form-label"><strong>Password</strong></label>
+                    <input class="form-control" id='psw' type='password' placeholder='Enter Password' name='password' required>
 
-                <label for='psw-repeat'><strong>Repeat Password</strong></label>
-                <input id='psw-repeat' type='password' placeholder='Repeat Password' name='psw-repeat' required>
+                    <label for='psw-repeat' class="form-label"><strong>Repeat Password</strong></label>
+                    <input class="form-control" id='psw-repeat' type='password' placeholder='Repeat Password' name='psw-repeat' required>
+                </div>
 
                 <hr>
 
-                <p> By creating an account you agree to signup for reminders about upcoming launches. </p>
-                <button class='registerbtn' type='submit'>Register</button>
+                <p class="card-text"> By creating an account you agree to signup for reminders about upcoming launches. </p>
+                <button class='btn btn-primary btn-lg col-6' type='submit'>Register</button>
             </div>
 
-            <div class='container-signin'>
-                <p> Already have an account? </p>
-                    <a href='/login'> Sign In</a>
+            <div>
+                <p><strong>Already have an account?</strong></p>
+                <a href='/login' class="btn btn-secondary btn-sm"> Sign In</a>
             </div>
         </form>
-
+    </div>
 </div>

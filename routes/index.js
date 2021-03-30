@@ -11,9 +11,10 @@ router.get('/login', auth.loginPage);
 router.post('/login', auth.login);
 router.get('/register', registerController.registerPage);
 router.post('/register', registerController.addUser, auth.login);
+router.post('/email', auth.email);
 
-// Must be an User to use these routes
-router.use(auth.isAuthenticated);
+// Must be a User to use these routes
+//router.use(auth.isAuthenticated);
 router.get('/', homeController.homePage);
 router.get('/launches', launchController.getLaunches);
 router.get('/logout', auth.logout);

@@ -1,4 +1,5 @@
 const passport = require('passport');
+const mail = require('../handlers/mail');
 
 exports.isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -25,3 +26,9 @@ exports.logout = (req, res) => {
     req.flash('success', 'You are now logged out!');
     res.redirect('/login');
 };
+
+exports.email = async (req, res) => {
+    await mail.send();
+    req.flash('success', 'Email sent!')
+    
+}

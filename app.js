@@ -16,8 +16,15 @@ const app = express();
 passport.use(User.createStrategy());
 
 // use static serialize and deserialize of model for passport session support
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+//passport.serializeUser(User.serializeUser());
+passport.serializeUser((user, done) => {
+    done(null, user._id);
+});
+//passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(async (id, done) => {
+    const user = await User.findById(id, 'name email _id');
+    done(null, user);
+});
 
 // populate req.cookies
 app.use(cookieParser());
@@ -26,16 +33,26 @@ app.use(cookieParser());
 app.use(session({ 
     secret: 'doge',
     key: 'sesh',
+    cookie: {
+        maxAge: 60000
+    },
     resave: false,
     saveUninitialized: false,
 }));
 
-// tells app to use our flash messages
-app.use(flash());
-
 // Tell app to use passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// tells app to use our flash messages
+app.use(flash());
+
+// pass variables to the templates and all requests
+app.use((req, res, next) => {
+    res.locals.flashes= req.flash();
+    res.locals.user = req.user || null;
+    next();
+});
 
 //This is the folder that has the hbs or pug  files
 app.set('views', path.join(__dirname, 'views'));

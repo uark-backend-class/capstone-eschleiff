@@ -1,10 +1,9 @@
+{{#if flashes}}
+    {{#each flashes}}
+        <div class='alert alert-success'>{{ this }}</div>
+    {{/each}}
+{{/if}}
 <div class="position-absolute top-50 start-50 translate-middle text-center">
-    {{#if flashes}}
-        {{#each flashes}}
-            <div class='alert alert-success'>{{ this }}</div>
-        {{/each}}
-    {{/if}}
-
     <div class="card bg-dark text-white">
         <img src="https://i.imgur.com/RFNX387.jpeg" class="card-img" alt="SpaceX Launch">
         <div class="card-img-overlay d-flex">

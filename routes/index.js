@@ -14,7 +14,7 @@ router.post('/register', registerController.addUser, auth.login);
 router.post('/email', auth.email);
 
 // Must be a User to use these routes
-//router.use(auth.isAuthenticated);
+router.use(auth.isAuthenticated);
 router.get('/', homeController.homePage);
 router.get('/launches', launchController.getLaunches);
 router.get('/logout', auth.logout);

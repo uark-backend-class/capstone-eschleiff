@@ -13,8 +13,15 @@
                 </tr>
                 {{#each launchData}}
                 <tr> 
+                    <script>
+                        document.querySelectorAll('.utcToLocal').forEach(
+                            (i) => {
+                                i.innerHTML = new Date(i.innerHTML).toLocaleDateString();
+                            }
+                        )
+                    </script>
                     <td>{{this.flight_number}}</td>
-                    <td>{{this.date_local}}</td>
+                    <td class="utcToLocal">{{this.date_local}}</td>
                     <td>{{this.name}}</td>
                     <td>{{this.details}}</td>
                 </tr>

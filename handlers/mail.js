@@ -7,7 +7,7 @@ require('dotenv').config({ path: 'variables.env' });
 
 const msg = {
     to: 'ericschleiff@gmail.com',
-    from: 'backendspacexproject.gmail.com',
+    from: 'backendspacexproject@gmail.com',
     subject: 'Sending with SendGrid Test',
     text: 'is easy and cool.',
     html: '<p>is easy and cool.</p>'

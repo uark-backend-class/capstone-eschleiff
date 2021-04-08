@@ -1,26 +1,18 @@
 const upcomingLaunchDates = require('../launches.api');
 
-let latestDate = [];
+let latestDates = [];
 
 exports.homePage = async (req, res) => {
     const upcomingDates = await upcomingLaunchDates.getUpcomingDates();
-    let date = upcomingDates[0];
-    //let todayString = today.toDateString();
+    let today = new Date();
     
-    // for (let x of upcomingDates) {
-    //     let today = new Date();
-    //     let newDate = new Date(x);
-    //     if (today < newDate) {
-    //         latestDate.push(newDate);
-    //     }
-    // }
-
-
-    //var date = upcomingDates[0];
-    //console.log(upcomingDates);
-    // console.log(todayString)
-    //console.log(date);
-    //console.log(latestDate);
-
+    for (let i=0; i<upcomingDates.length; i++) {
+        if (new Date(upcomingDates[i]) - today > 0) {
+            latestDates.push(upcomingDates[i])
+        }
+    }
+    
+    let date = latestDates[0];
+    
     res.render('home', { date });
 };

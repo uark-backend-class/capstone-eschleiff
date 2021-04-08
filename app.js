@@ -1,13 +1,13 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const pug = require('pug');
 const exphbs = require('express-handlebars');
 const routes = require('./routes/index');
 const User = require('./models/users.model');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
+const errorHandlers = require('./handlers/errorHandlers');
 
 //Create express app
 const app = express(); 
@@ -58,16 +58,16 @@ app.use((req, res, next) => {
 app.set('views', path.join(__dirname, 'views'));
 
 //Sets pug as my viewing engine
-//app.set('view engine', 'pug');
 app.engine('hbs', exphbs({
     extname: 'hbs'
 }));
 app.set('view engine', 'hbs');
 
 
-// Pare url encoded data and put it into req.body
+// Parse url encoded data and put it into req.body
 app.use(express.urlencoded({extended: true}));
 
+// serves us static files to use in our app
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Parse JSON data and put it into req.body
@@ -75,5 +75,8 @@ app.use(express.json());
 
 // tells our app what routes to use
 app.use(routes);
+
+// middleware for errors regarding the above routes
+app.use(errorHandlers.notFound);
 
 module.exports = app;

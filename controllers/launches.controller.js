@@ -1,4 +1,3 @@
-const axios = require('axios');
 const launchesapi = require('../launches.api');
 
 
@@ -8,3 +7,9 @@ exports.getLaunches = async (req, res) => {
     res.render('launches', { launchData });
     
 };
+
+exports.getUpcomingLaunches = async (req, res) => {
+    const launchData = await launchesapi.getUpcomingLaunches();
+
+    res.render('upcoming', { launchData });
+}

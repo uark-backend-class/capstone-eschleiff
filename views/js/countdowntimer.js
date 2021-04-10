@@ -1,5 +1,3 @@
-const upcomingLaunchDates = require('../../launches.api');
-
 // const upcomingDates = launchesapi.getUpcomingLaunch();
 //     var countDownDate = new Date(`${upcomingDates[0]}`).getTime();
 //     var x = setInterval( () => {
@@ -26,12 +24,8 @@ const upcomingLaunchDates = require('../../launches.api');
 //     }, 1000);
 // }
 
-let date;
-async () => {
-    await upcomingLaunchDates.getUpcomingDates();
-    date = upcomingDates[0];
-}
-let countDownDate = new Date('2021-04-07T16:34:00.000Z');
+let time = (document.getElementById('launchDate').innerHTML);
+let countDownDate = new Date(time).getTime();
 let x = setInterval( () => {
     let now = new Date().getTime();
     let timeLeft = countDownDate - now;
@@ -41,11 +35,8 @@ let x = setInterval( () => {
     let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
     document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
 
-    console.log(now);
-    console.log(countDownDate);
-
     if (timeLeft < 0) {
         clearInterval(x);
-        document.querySelector(".timer").innerHTML = "EXPIRED";
+        document.getElementById('countdown').innerHTML = "EXPIRED";
     }
 }, 1000);

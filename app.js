@@ -22,7 +22,7 @@ passport.serializeUser((user, done) => {
 });
 //passport.deserializeUser(User.deserializeUser());
 passport.deserializeUser(async (id, done) => {
-    const user = await User.findById(id, 'name email _id');
+    const user = await User.findById(id, 'firstName email _id');
     done(null, user);
 });
 
@@ -50,7 +50,6 @@ app.use(flash());
 // pass variables to the templates and all requests
 app.use((req, res, next) => {
     res.locals.flashes= req.flash();
-    res.locals.user = req.user || null;
     next();
 });
 

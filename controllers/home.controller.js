@@ -20,12 +20,3 @@ exports.homePage = async (req, res) => {
     res.render('home', { date, name });
 };
 
-exports.sendMail = async (req, res) => {
-    await mail.sendMail({
-        to: req.user.email,
-        from: 'backendspacexproject@gmail.com',
-        templateId: 'd-2827c58b1fe743e29047e08e5a675f1d'
-    });
-    req.flash('success', 'Mail sent successfully!');
-    res.redirect('/');
-};

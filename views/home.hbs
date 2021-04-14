@@ -5,7 +5,7 @@
         <div class="card-img-overlay d-flex">
             <div class="align-self-center mx-auto">
                 <p id='launchDate' hidden>{{date}}</p>
-                <h1 id="countdown" class="display-2" style></h1>
+                <h1 id="countdown" class="display-2"></h1>
                 <script>
                     let time = (document.getElementById('launchDate').innerHTML);
                     let countDownDate = new Date(time).getTime();
@@ -32,7 +32,6 @@
     <a href="/launches" class="btn btn-light">Upcoming Launches</a>
     <a href="/register" class="btn btn-light">Register</a>
     <a href="/logout" class="btn btn-danger">Logout</a>
-    <a href="/sendmail" class="btn btn-secondary">Send Mail</a>
     
 </div>
 

@@ -28,8 +28,28 @@ async function getUpcomingDates() {
     return (upcomingDates);
 }
 
+async function getLatestDate() {
+    let today = new Date();
+    let dates = [];
+
+    const response = await axios.get(baseUrl + 'launches/upcoming');
+    let latestDateData = response.data;
+
+    let latestDates = latestDateData.map(elem => elem.data_utc);
+
+    for (let i=0; i<latestDates.length; i++) {
+        if (new Date(latestDates[i]) - today > 0) {
+            dates.push(latestDates[i])
+        }
+    }
+
+    return dates[0];
+
+}
+
 module.exports = {
     getAllLaunches,
     getUpcomingLaunches,
     getUpcomingDates,
+    getLatestDate,
 };

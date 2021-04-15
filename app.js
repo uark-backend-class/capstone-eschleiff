@@ -42,7 +42,7 @@ app.use(session({
 }));
 
 // Tell app to use passport middleware
-app.use(passport.initialize());
+app.use(passport.initialize());1
 app.use(passport.session());
 
 // tells app to use our flash messages
@@ -81,26 +81,5 @@ app.use(routes);
 
 // middleware for errors regarding the above routes
 app.use(errorHandlers.notFound);
-
-// scheduler to send emails out to db when the launch reaches 1 hour left
-// const job = schedule.scheduleJob('0 * * * *', async() => {
-//     let today = new Date();
-    
-//     if (latestDate.getLatestDate() - today == 1) {
-//         let emails = await mail.userEmails();
-//         for (email of emails) {
-//             await mail.sendMail({
-//                 to: email,
-//                 from: 'backendspacexproject@gmail.com',
-//                 templateId: 'd-2827c58b1fe743e29047e08e5a675f1d'
-//             });
-//         }
-//     }
-//     else {
-//         console.log("Time is greater than 1 hour." + today.toUTCString());
-//     }
-
-//     console.log('This task should be running every hour...hopefully.');
-// });
 
 module.exports = app;

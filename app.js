@@ -5,13 +5,35 @@ const exphbs = require('express-handlebars');
 const routes = require('./routes/index');
 const User = require('./models/users.model');
 const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const errorHandlers = require('./handlers/errorHandlers');
 const expressValidator = require('express-validator');
+require('dotenv').config({ path: 'variables.env' });
 
-//Create express app
-const app = express(); 
+// Create express app
+const app = express();
+
+// setup Google auth strategy
+passport.use(new GoogleStrategy({
+    clientID: "794825051885-6ta9i9sqhhqj3tdbrbp0gtc6o4aoma87.apps.googleusercontent.com",
+    clientSecret: "0BJLDucxLGuStdP7yJA0gxYe",
+    callbackURL: '/auth/google/redirect'
+}, async (accessToken, refreshToken, profile, done) => {
+    let currentUser = await User.findOne({ googleId: profile.id });
+
+    if (currentUser) {
+        done(null, currentUser);
+    }
+    else {
+        const newUser = new User({
+            email: profile.email,
+            name: profile.displayName,
+            googleId: profile.id
+        });
+    };
+}));
 
 // Static authenticate method of model in LocalStrategy
 passport.use(User.createStrategy());

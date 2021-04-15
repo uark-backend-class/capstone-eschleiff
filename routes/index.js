@@ -16,9 +16,14 @@ router.post('/register',
     registerController.addUser, 
     auth.login
 );
-router.post('/email', auth.email);
+router.get('/auth/google', passport.authenticate('google', { 
+    scope: ['profile', 'email']
+}));
+router.get('/auth/google/redirect', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+    res.redirect('/');
+});
 
-// Must be a User to use these routes
+// Must be a User/logged-in to use these routes
 router.use(auth.isAuthenticated);
 router.get('/', catchErrors(homeController.homePage));
 router.get('/launches', catchErrors(launchController.getLaunches));

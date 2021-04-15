@@ -32,3 +32,8 @@ exports.email = async (req, res) => {
     req.flash('success', 'Email sent!')
     
 }
+
+// exports.googleAuth = (req, res) => {
+//     res.flash('succes', 'Successfully logged in!');
+//     res.redirect('/');
+// }

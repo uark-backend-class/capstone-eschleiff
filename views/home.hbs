@@ -5,7 +5,15 @@
         <div class="card-img-overlay d-flex">
             <div class="align-self-center mx-auto">
                 <p id='launchDate' hidden>{{date}}</p>
-                <h1 id="countdown" class="display-2"></h1>
+                <div class="row">
+                    <div id="countdown-days" class="col-sm display-2"></div>
+                    <span class="col-sm display-2">:</span>
+                    <div id="countdown-hours" class="col-sm display-2"></div>
+                    <span class="col-sm display-2">:</span>
+                    <div id="countdown-minutes" class="col-sm display-2"></div>
+                    <span class="col-sm display-2">:</span>
+                    <div id="countdown-seconds" class="col-sm display-2"></div>
+                </div>
                 <script>
                     let time = (document.getElementById('launchDate').innerHTML);
                     let countDownDate = new Date(time).getTime();
@@ -16,7 +24,10 @@
                         let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                         let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                        document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+                        document.getElementById('countdown-days').innerHTML = days;
+                        document.getElementById('countdown-hours').innerHTML = hours;
+                        document.getElementById('countdown-minutes').innerHTML = minutes;
+                        document.getElementById('countdown-seconds').innerHTML = seconds;
 
                         if (timeLeft < 0) {
                             clearInterval(x);

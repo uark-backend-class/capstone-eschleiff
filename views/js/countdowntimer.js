@@ -7,7 +7,14 @@ let x = setInterval( () => {
     let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-    document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+    document.getElementById('countdown-days').innerHTML = days;
+    document.getElementById('countdown-colon').innerHTML = ' : ';
+    document.getElementById('countdown-hours').innerHTML = hours;
+    document.getElementById('countdown-colon').innerHTML = ' : ';
+    document.getElementById('countdown-minutes').innerHTML = minutes;
+    document.getElementById('countdown-colon').innerHTML = ' : ';
+    document.getElementById('countdown-seconds').innerHTML = seconds;
+
 
     if (timeLeft < 0) {
         clearInterval(x);

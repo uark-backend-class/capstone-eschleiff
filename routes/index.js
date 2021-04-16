@@ -20,6 +20,7 @@ router.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 router.get('/auth/google/redirect', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+    req.flash('success', 'You have successfully logged in!');
     res.redirect('/');
 });
 

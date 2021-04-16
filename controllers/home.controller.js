@@ -15,8 +15,8 @@ exports.homePage = async (req, res) => {
     }
     let date = latestDates[0];
 
-    let name = req.user.firstName
-    
+    let name = req.user.firstName;
+    //let googleName = req.user;
     res.render('home', { date, name });
 };
 

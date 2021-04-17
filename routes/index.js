@@ -23,6 +23,11 @@ router.get('/auth/google/redirect', passport.authenticate('google', { failureRed
     req.flash('success', 'You have successfully logged in!');
     res.redirect('/');
 });
+router.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ]}));
+router.get('/auth/github/redirect', passport.authenticate('github',{ failureRedirect: '/login'}), (req, res) => {
+    req.flash('success', 'You have successfully logged in!');
+    res.redirect('/');
+})
 
 // Must be a User/logged-in to use these routes
 router.use(auth.isAuthenticated);

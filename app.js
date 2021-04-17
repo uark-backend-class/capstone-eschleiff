@@ -5,47 +5,20 @@ const exphbs = require('express-handlebars');
 const routes = require('./routes/index');
 const User = require('./models/users.model');
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const errorHandlers = require('./handlers/errorHandlers');
 const expressValidator = require('express-validator');
-const findOrCreate = require('mongoose-findorcreate');
 require('dotenv').config({ path: 'variables.env' });
+
+// this is where I pull in the google oauth
+require('./handlers/google-auth');
+
+// this is where I pull in the github oauth
+require('./handlers/github-auth');
 
 // Create express app
 const app = express();
-
-// setup Google auth strategy
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/auth/google/redirect'
-}, (accessToken, refreshToken, profile, done) => {
-    User.findOrCreate({ googleId: profile.id }, { email: profile.emails[0].value, firstName: profile.name.givenName, lastName: profile.name.familyName}, 
-        (err, user) => {
-            //console.log(user);
-            return done(err, user);
-        })
-    // let user = await User.findOne({ googleId: profile.id });
-    // console.log(profile);
-
-    // if (user) {
-    //     console.log(user);
-    //     done(null, user);
-    // }
-    // else {
-    //     const newUser = new User({
-    //         // email: profile.email,
-    //         // name: profile.displayName,
-    //         googleId: profile.id
-    //     });
-
-    //     await newUser.save();
-
-    //     done(null, newUser);
-    // };
-}));
 
 // Static authenticate method of model in LocalStrategy
 passport.use(User.createStrategy());
@@ -76,7 +49,7 @@ app.use(session({
 }));
 
 // Tell app to use passport middleware
-app.use(passport.initialize());1
+app.use(passport.initialize());
 app.use(passport.session());
 
 // tells app to use our flash messages

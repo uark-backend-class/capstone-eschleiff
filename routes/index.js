@@ -42,6 +42,8 @@ router.get('/auth/facebook/redirect', passport.authenticate('facebook', { failur
 // Must be a User/logged-in to use these routes
 router.use(auth.isAuthenticated);
 router.get('/', catchErrors(homeController.homePage));
+router.get('/profile', homeController.profile);
+router.post('/profile', catchErrors(homeController.updateProfile));
 router.get('/launches', catchErrors(launchController.getLaunches));
 router.get('/upcoming', catchErrors(launchController.getUpcomingLaunches));
 router.get('/logout', auth.logout);

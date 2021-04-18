@@ -1,5 +1,5 @@
 const upcomingLaunchDates = require('../launches.api');
-const mail = require('../handlers/mail');
+const User = require('../models/users.model');
 
 let latestDates = [];
 
@@ -17,5 +17,29 @@ exports.homePage = async (req, res) => {
 
     let name = req.user.firstName;
     res.render('home', { date, name });
+};
+
+exports.profile = (req, res) => {
+    let firstName = req.user.firstName;
+    let lastName = req.user.lastName;
+    let email = req.user.email;
+    res.render('profile', { title: 'Update Your Profile', firstName, lastName, email });
+}
+
+exports.updateProfile = async (req, res) => {
+    const updates = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email
+    };
+
+    const user = await User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: updates },
+        { new: true, runValidators: true, context: 'query' }
+    );
+
+    req.flash('success', 'Successfully updated profile!');
+    res.redirect('/');
 };
 

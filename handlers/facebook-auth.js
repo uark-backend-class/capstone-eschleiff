@@ -10,8 +10,6 @@ passport.use(new FacebookStrategy({
 }, (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({ facebookId: profile.id }, { firstName: profile.displayName.split(' ')[0], lastName: profile.displayName.split(' ')[1] },  
         (err, user) => {
-            console.log(profile);
-            console.log(user);
             return done(err, user);
         })
 }))

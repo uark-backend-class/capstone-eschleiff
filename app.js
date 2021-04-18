@@ -33,7 +33,7 @@ passport.serializeUser((user, done) => {
 });
 //passport.deserializeUser(User.deserializeUser());
 passport.deserializeUser(async (id, done) => {
-    const user = await User.findById(id, 'firstName email _id');
+    const user = await User.findById(id, 'firstName lastName email _id');
     done(null, user);
 });
 

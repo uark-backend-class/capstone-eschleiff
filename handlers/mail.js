@@ -10,13 +10,21 @@ let launchDate = new Date(getDate.getLatestDate());
 let unixDate = launchDate.setHours(launchDate.getHours() - 1);
 
 // grabs all the emails in the db
-let userEmails = async() => {
+
+async function getEmails() {
+    let userEmails = [];
     let users = await User.find({}, { "email": 1});
     
     let emails = users.map(user => user.email);
-    return emails;
-}
-let emails = userEmails();
+    emails.forEach((email) => {
+        if(!userEmails.includes(email)) {
+            userEmails.push(email);
+        };
+    });
+    return (userEmails);
+};
+
+let emails = getEmails();
 
 // send email to all users in db 1 hour before launch time
 function sendMail() {
@@ -39,7 +47,7 @@ function sendMail() {
 
 module.exports = {
     sendMail,
-    userEmails
+    getEmails
 }
 
 

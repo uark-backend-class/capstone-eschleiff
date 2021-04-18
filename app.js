@@ -17,6 +17,9 @@ require('./handlers/google-auth');
 // this is where I pull in the github oauth
 require('./handlers/github-auth');
 
+// this is where I pull in the facebook oauth
+require('./handlers/facebook-auth');
+
 // Create express app
 const app = express();
 

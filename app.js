@@ -44,9 +44,7 @@ app.use(cookieParser());
 app.use(session({ 
     secret: 'doge',
     key: 'sesh',
-    cookie: {
-        maxAge: 60000
-    },
+    cookie: {},
     resave: false,
     saveUninitialized: false,
 }));

@@ -1,7 +1,6 @@
 const GithubStrategy = require('passport-github2');
 const passport = require('passport');
 const User = require ('../models/users.model');
-require('dotenv').config({ path: 'variables.env' });
 
 // setup Github auth strategy
 passport.use(new GithubStrategy({

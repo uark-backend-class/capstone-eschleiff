@@ -1,8 +1,8 @@
 const User = require('../models/users.model');
 const getDate = require('../launches.api');
+require('dotenv').config({ path: 'variables.env' });
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-require('dotenv').config();
 
 // grab latest launch date and converts it to a unix timestamp minus 1 hour
 // here I set the date to send emails 1 hour prior to the latest date

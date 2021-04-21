@@ -1,8 +1,8 @@
 const FacebookStrategy = require('passport-facebook');
 const passport = require('passport');
 const User = require('../models/users.model');
-require('dotenv').config({ path: 'variables.env' });
 
+// setup Facebook oauth
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,

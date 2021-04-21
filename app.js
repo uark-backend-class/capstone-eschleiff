@@ -9,7 +9,6 @@ const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const errorHandlers = require('./handlers/errorHandlers');
 const expressValidator = require('express-validator');
-require('dotenv').config({ path: 'variables.env' });
 
 // this is where I pull in the google oauth
 require('./handlers/google-auth');

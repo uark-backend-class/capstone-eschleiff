@@ -1,4 +1,5 @@
 const { patch } = require('../app');
+const moment = require('moment');
 const upcomingLaunchDates = require('../launches.api');
 const upcomingLaunchData = require('../launches.api');
 const User = require('../models/users.model');
@@ -56,7 +57,10 @@ exports.currentLaunch = async (req, res) => {
     let missionName = current.name;
     let launchpadName = current.launchpad.name;
     let launchpadRegion = current.launchpad.region;
-
+    let localTime = moment(current.date_local).format('ddd Do MMM, h:mm a');
+    let siteTime = moment.parseZone(current.date_local).format('ddd Do MMM, h:mm a');
+    let crewNames = current.crew.map(names => names.name);
+    let crewImg = current.crew.map(img => img.image);
 
     res.render('launchinfo', { 
         title: 'Upcoming Launch Info',
@@ -66,6 +70,10 @@ exports.currentLaunch = async (req, res) => {
         missionName,
         launchpadName,
         launchpadRegion,
+        localTime,
+        siteTime,
+        crewNames,
+        crewImg
      });
 };
 

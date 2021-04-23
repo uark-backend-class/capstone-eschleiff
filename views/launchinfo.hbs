@@ -1,44 +1,63 @@
 <div class="position-absolute top-50 start-50 translate-middle">
-    <img src={{image}} class="card-img-top" alt="Crew Patch">
-    <h1>{{title}}</h1>
+    <img src={{image}} class="card-img-top" alt="Crew Patch" style="width:650px;height:600px;">
     <div class="card text-white bg-dark mb-3" style="width: 50rem;">
         <div class="card-body">
-            <table class="table table-sm table-borderless table-dark align-middle" style="width: 20rem;">
+            <table class="table table-sm table-borderless table-dark" style="width: 20rem;">
                 <tbody>
                     <tr>
-                        <td>Mission Name</td>
+                        <td class="text-muted">Mission Name</td>
                         <td>{{missionName}}</td>
                     </tr>
                     <tr>
-                        <td>Rocket</td>
+                        <td class="text-muted">Rocket</td>
                         <td>{{rocketName}}</td>
                     </tr>
                     <tr>
-                        <td>Launch Site</td>
+                        <td class="text-muted">Launch Site</td>
                         <td>{{launchpadName}} {{launchpadRegion}}</td>
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-sm table-borderless table-dark" style="width: 15rem;">
+            <table class="table table-sm table-borderless table-dark" style="width: 20rem;">
                 <tbody>
                     <tr>
-                        <td>Site Launch Time</td>
-                        <td>placeholder</td>
+                        <td class="text-muted">Site Launch Time</td>
+                        <td>{{siteTime}}</td>
                     </tr>
                     <tr>
-                        <td>Your Launch Time</td>
-                        <td>placeholder</td>
+                        <td class="text-muted"> Your Launch Time</td>
+                        <td>{{localTime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-borderless table-dark">
+                <tbody>
+                    <tr>
+                    {{#each crewNames}}
+                        <td>
+                            {{this}}
+                        </td>
+                    {{/each}}
+                    </tr>
+                    <tr>
+                    {{#each crewImg}}
+                        <td>
+                            <img src="{{this}}" alt="..." style="width:170px;height:210px;">
+                        </td>
+                    {{/each}}
                     </tr>
                 </tbody>
             </table>
         </div>
-        <hr>
+        <hr style="color: lightgrey;">
         <div class="card-body">
             <p class="card-text">{{details}}</p>
         </div>
-        <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+        <div class="d-grid gap-2">
+            <a href="http://www.spacex.com" target="_blank" class="btn btn-outline-light">SpaceX</a>
         </div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-center">
+        <a href="/" class="btn btn-outline-danger btn-lg">Home</a>
     </div>
 </div>

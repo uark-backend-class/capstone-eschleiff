@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .container-timer
+        .box2 
+            p.launchDate(hidden)= date
+            .timer
+                script.
+                    let time = document.querySelector('.launchDate').innerHTML
+                    let countDownDate = new Date(time).getTime();
+                    let x = setInterval( () => {
+                        let now = new Date().getTime();
+                        let timeLeft = countDownDate - now;
+                        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                        document.querySelector('.timer').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+                        if (distance < 0) {
+                             clearInterval(x);
+                            document.querySelector(".timer").innerHTML = "EXPIRED";
+                        }
+                    }, 1000);
+        h1.title Welcome to SpaceX
+                form(action='/launches', method="get") 
+                    button(type="submit") Upcoming Launches
+                form(action='/register' method='get')
+                    button(type='submit') Register
+                form(action='/logout' method='get')
+                    button(type='submit') Logout
+                form(action='/email' method='post')
+                    button(type='submit') Send Email

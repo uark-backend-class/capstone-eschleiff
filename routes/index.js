@@ -46,6 +46,7 @@ router.get('/profile', homeController.profile);
 router.post('/profile', catchErrors(homeController.updateProfile));
 router.get('/launches', catchErrors(launchController.getLaunches));
 router.get('/upcoming', catchErrors(launchController.getUpcomingLaunches));
+router.get('/currentinfo', homeController.currentLaunch);
 router.get('/logout', auth.logout);
 
 module.exports = router;

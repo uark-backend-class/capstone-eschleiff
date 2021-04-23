@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='/style.css')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+    body
+        block header
+
+        block messages 
+            if flashes 
+                each flash in flashes 
+                    p #{ flash }
+        .content
+            block content
+                p THIS IS DEFAULT CONTENT, YOU SHOULDNT SEE ME
+        block scripts 
+            script(src='./countdowntimer.js')
+       

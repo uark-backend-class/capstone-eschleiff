@@ -1,4 +1,6 @@
+const { patch } = require('../app');
 const upcomingLaunchDates = require('../launches.api');
+const upcomingLaunchData = require('../launches.api');
 const User = require('../models/users.model');
 
 let latestDates = [];
@@ -41,5 +43,29 @@ exports.updateProfile = async (req, res) => {
 
     req.flash('success', 'Successfully updated profile!');
     res.redirect('/');
+};
+
+exports.currentLaunch = async (req, res) => {
+    let launchData = await upcomingLaunchData.getNextLaunchDocs();
+    let current = launchData[0];
+    //console.log(current);
+
+    let patchImage = current.links.patch.large;
+    let details = current.details;
+    let rocketName = current.rocket.name;
+    let missionName = current.name;
+    let launchpadName = current.launchpad.name;
+    let launchpadRegion = current.launchpad.region;
+
+
+    res.render('launchinfo', { 
+        title: 'Upcoming Launch Info',
+        image: patchImage,
+        details,
+        rocketName,
+        missionName,
+        launchpadName,
+        launchpadRegion,
+     });
 };
 

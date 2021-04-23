@@ -1,0 +1,28 @@
+extends layout 
+
+block content 
+
+    h1.title All Launches
+
+    form(action='/', method="get") 
+        button(type="submit") Back to Homepage
+    
+    .box
+        .allLaunches
+            table.table
+                 tr 
+                    th Flight Number
+                    th Date
+                    th Flight Name
+                    th Flight Details
+                 each elem,i in launchData
+                    tr 
+                        td !{elem.flight_number}
+                        td !{elem.date_local}
+                        td !{elem.name}
+                        td !{elem.details}
+          
+
+
+            
+    

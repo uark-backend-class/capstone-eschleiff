@@ -19,13 +19,46 @@ async function getUpcomingLaunches() {
     return launchData;
 }
 
+async function getNextLaunchDocs() {
+    const response = await axios.post(baseUrl + 'launches/query', {
+        query: {
+            success: null,
+        },
+        options: {
+            sort: {
+                flight_number: 'asc',
+            },
+            limit: 10,
+            populate: [
+                'cores.core',
+                'cores.landpad',
+                'ships',
+                'crew',
+                'capsules',
+                'payloads',
+                'launchpad',
+                {
+                    path: 'rocket',
+                    select: {
+                        name: 1,
+                    }
+                }
+            ]
+        }
+    });
+    launchData = response.data.docs;
+
+    return launchData;
+}
+
+
 async function getUpcomingDates() {
     const response = await axios.get(baseUrl + 'launches/upcoming');
     upcomingLaunchData = (response.data);
 
     let upcomingDates = upcomingLaunchData.map(elem => elem.date_utc);
     
-    return (upcomingDates);
+    return upcomingDates;
 }
 
 async function getLatestDate() {
@@ -52,4 +85,5 @@ module.exports = {
     getUpcomingLaunches,
     getUpcomingDates,
     getLatestDate,
+    getNextLaunchDocs
 };

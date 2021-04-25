@@ -10,9 +10,12 @@ let launchDate = async () => {
     let response = await getDate.getLatestDate();
     return response
 };
-let dt = new Date();
-let unixDate = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)).getTime() / 1000);
+let dt = new Date()
+//let dt2 = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)));
+let unixDate = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)));
+//console.log(unixDate);
 console.log(unixDate);
+console.log(dt.toLocaleString());
 
 // grabs all the emails in the db
 async function getEmails() {

@@ -6,15 +6,11 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // grab latest launch date and substracts 1 hour
 // here I set the date to send emails 1 hour prior to the latest date
-let launchDate = async () => {
+async function getNewDate() {
     let response = await getDate.getLatestDate();
-    return response
+    let unix = response - (60 * 60);
+    return unix;
 };
-let dt = new Date()
-let unixDate = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)));
-//console.log(unixDate);
-console.log(unixDate);
-console.log(dt.toLocaleString());
 
 // grabs all the emails in the db
 async function getEmails() {
@@ -30,22 +26,14 @@ async function getEmails() {
     //console.log(userEmails);
     return userEmails;
 };
-// let emails = getEmails();
-// console.log(emails);
 
-// let emails = async () => {
-//     await getEmails();
-// };
-
-// emails();
-// let userEmails;
-// console.log(userEmails);
 
 // send email to all users in db 1 hour before launch time
 async function sendMail() {
     let emails = await getEmails();
+    let unixDate = await getNewDate();
     for (email of emails) {
-        sgMail
+        await sgMail
             .send({
                 to: email,
                 from: 'backendspacexproject@gmail.com',
@@ -53,10 +41,10 @@ async function sendMail() {
                 templateId: 'd-2827c58b1fe743e29047e08e5a675f1d'
             })
             .then(() => {
-                console.log('Email sent')
+                console.log('Email scheduled')
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response.body)
             })
     }
 };

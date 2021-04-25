@@ -11,7 +11,6 @@ let launchDate = async () => {
     return response
 };
 let dt = new Date()
-//let dt2 = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)));
 let unixDate = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)));
 //console.log(unixDate);
 console.log(unixDate);
@@ -28,13 +27,23 @@ async function getEmails() {
             userEmails.push(email);
         };
     });
-    return (userEmails);
+    //console.log(userEmails);
+    return userEmails;
 };
+// let emails = getEmails();
+// console.log(emails);
 
-let emails = getEmails();
+// let emails = async () => {
+//     await getEmails();
+// };
+
+// emails();
+// let userEmails;
+// console.log(userEmails);
 
 // send email to all users in db 1 hour before launch time
-function sendMail() {
+async function sendMail() {
+    let emails = await getEmails();
     for (email of emails) {
         sgMail
             .send({
@@ -51,6 +60,8 @@ function sendMail() {
             })
     }
 };
+
+sendMail();
 
 module.exports = {
     sendMail,

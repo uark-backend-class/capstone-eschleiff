@@ -66,22 +66,22 @@ async function getUpcomingDates() {
 
 // grabs array with the dates of the upcoming launches
 async function getLatestDate() {
-    let today = new Date();
+    let today = Math.floor(new Date().getTime() / 1000);
     let dates = [];
-
-    const response = await axios.get(baseUrl + 'launches/upcoming');
+    
+    let response = await axios.get(baseUrl + 'launches/upcoming');
     let latestDateData = response.data;
 
-    let latestDates = latestDateData.map(elem => elem.data_utc);
+    let latestDates = latestDateData.map(elem => elem.date_unix);
 
+    // creates new array with dates that havent expired
     for (let i=0; i<latestDates.length; i++) {
         if (new Date(latestDates[i]) - today > 0) {
             dates.push(latestDates[i])
         }
     }
-
     return dates[0];
-
+    
 }
 
 module.exports = {

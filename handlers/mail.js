@@ -4,13 +4,17 @@ require('dotenv').config({ path: 'variables.env' });
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// grab latest launch date and converts it to a unix timestamp minus 1 hour
+// grab latest launch date and substracts 1 hour
 // here I set the date to send emails 1 hour prior to the latest date
-let launchDate = new Date(getDate.getLatestDate());
-let unixDate = launchDate.setHours(launchDate.getHours() - 1);
+let launchDate = async () => {
+    let response = await getDate.getLatestDate();
+    return response
+};
+let dt = new Date();
+let unixDate = Math.floor(new Date(dt.setMinutes(dt.getMinutes() + 5)).getTime() / 1000);
+console.log(unixDate);
 
 // grabs all the emails in the db
-
 async function getEmails() {
     let userEmails = [];
     let users = await User.find({}, { "email": 1});

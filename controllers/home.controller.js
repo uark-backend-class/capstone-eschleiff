@@ -57,7 +57,7 @@ exports.currentLaunch = async (req, res) => {
     let missionName = current.name;
     let launchpadName = current.launchpad.name;
     let launchpadRegion = current.launchpad.region;
-    let localTime = moment(current.date_local).format('ddd Do MMM, h:mm a');
+    let localTime = moment(current.date_utc).format('ddd Do MMM, h:mm a');
     let siteTime = moment.parseZone(current.date_local).format('ddd Do MMM, h:mm a');
     let crewNames = current.crew.map(names => names.name);
     let crewImg = current.crew.map(img => img.image);
